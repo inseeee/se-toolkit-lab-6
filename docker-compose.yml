@@ -3,7 +3,7 @@ services:
     build: .
     restart: unless-stopped
     ports:
-      - ${APP_HOST_ADDRESS:?'APP_HOST_ADDRESS is required'}:${APP_HOST_PORT:?'APP_HOST_PORT is required'}:${APP_CONTAINER_PORT}
+      - "0.0.0.0:42002:8000"
     expose:
       - ${APP_CONTAINER_PORT}
     environment:
@@ -72,17 +72,17 @@ services:
       postgres:
         condition: service_healthy
 
-  caddy:
-    build: frontend/
-    depends_on:
-      - app
-    environment:
-      - CADDY_CONTAINER_PORT=${CADDY_CONTAINER_PORT:?'CADDY_CONTAINER_PORT is required'}
-      - APP_CONTAINER_PORT=${APP_CONTAINER_PORT:?'APP_CONTAINER_PORT is required'}
-    ports:
-      - ${CADDY_HOST_ADDRESS:?'CADDY_HOST_ADDRESS is required'}:${CADDY_HOST_PORT:?'CADDY_HOST_PORT is required'}:${CADDY_CONTAINER_PORT}
-    volumes:
-      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
+#  caddy:
+#    build: frontend/
+#    depends_on:
+#      - app
+#    environment:
+#      - CADDY_CONTAINER_PORT=${CADDY_CONTAINER_PORT:?'CADDY_CONTAINER_PORT is required'}
+#      - APP_CONTAINER_PORT=${APP_CONTAINER_PORT:?'APP_CONTAINER_PORT is required'}
+#    ports:
+#      - ${CADDY_HOST_ADDRESS:?'CADDY_HOST_ADDRESS is required'}:${CADDY_HOST_PORT:?'CADDY_HOST_PORT is required'}:${CADDY_CONTAINER_PORT}
+#    volumes:
+#      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
 
   # Uncomment to enable Grafana for the optional task.
   # grafana:
