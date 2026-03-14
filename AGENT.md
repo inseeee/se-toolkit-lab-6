@@ -54,3 +54,39 @@ uv run agent.py "What is REST?"
 
 \- All paths are validated with `safe\_path()` to prevent directory traversal.
 
+
+
+
+
+\## System Agent (Task 3)
+
+
+
+\*\*New tool:\*\* `query\_api(method, path, body)`
+
+\- Calls the deployed backend API
+
+\- Authenticates with `LMS\_API\_KEY` from `.env.docker.secret`
+
+\- Base URL from `AGENT\_API\_BASE\_URL` (default http://localhost:42002)
+
+
+
+\*\*Agent decisions:\*\*
+
+\- Wiki questions → `read\_file`
+
+\- Data questions → `query\_api`
+
+\- Code questions → `read\_file`
+
+
+
+\*\*Environment variables:\*\*
+
+\- All LLM config from `.env.agent.secret`
+
+\- Backend auth from `.env.docker.secret`
+
+\- No hardcoded values — ready for autochecker.
+
