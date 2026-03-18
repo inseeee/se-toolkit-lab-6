@@ -90,3 +90,10 @@ uv run agent.py "What is REST?"
 
 \- No hardcoded values — ready for autochecker.
 
+## System Agent (Task 3)
+
+**New tool:** `query_api(method, path, body)`
+- Calls the deployed backend API
+- Authenticates with `LMS_API_KEY`
+- Base URL from `AGENT_API_BASE_URL`
+
