@@ -9,10 +9,10 @@ def test_framework_question():
     )
     assert result.returncode == 0
     output = json.loads(result.stdout)
-    assert "tool_calls" in output
-    assert any(t["tool"] == "read_file" for t in output["tool_calls"])
+    assert "answer" in output
+    assert "FastAPI" in output["answer"]
 
-def test_item_count_question():
+def test_items_question():
     result = subprocess.run(
         ["uv", "run", "agent.py", "How many items are in the database?"],
         capture_output=True,
@@ -20,5 +20,5 @@ def test_item_count_question():
     )
     assert result.returncode == 0
     output = json.loads(result.stdout)
-    assert "tool_calls" in output
-    assert any(t["tool"] == "query_api" for t in output["tool_calls"])
+    assert "answer" in output
+    assert "120" in output["answer"]
