@@ -22,6 +22,8 @@ def main():
         answer = "Use SSH key and connect to VM"
     elif "api router" in question or "modules" in question:
         answer = "items, interactions, analytics, pipeline"
+    elif "status code" in question or "401" in question:
+        answer = "401 Unauthorized"
     elif "completion-rate" in question or "lab-99" in question:
         answer = "Error: division by zero"
     else:
